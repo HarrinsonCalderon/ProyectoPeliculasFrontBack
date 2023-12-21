@@ -1,0 +1,32 @@
+<app-listadp-generico [listado]="peliculas">
+  <ng-container vacio>
+    <div>No hay peliculas </div>
+  </ng-container>
+
+  <ng-container contenido>
+
+    <div class="peliculas-contenedor">
+
+      <div *ngFor="let it; let i=index of peliculas" class="pelicula-contenedor">
+
+        <a> <img [src]="it.poster" alt="poster" />
+        </a>
+        
+        <p>
+          <a>{{it.titulo}}</a>
+        </p>
+        <div>
+          <a mat-flat-button color="primary">
+              Editar
+          </a>
+          <button mat-flat-button color="warn" type="button"> Borrar</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+
+</app-listadp-generico>
