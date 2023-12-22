@@ -1,7 +1,9 @@
+using BackEnd.Entidades.Repositorios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,20 @@ namespace BackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //db tablas
+            services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+
+            //permisos de cors
+            services.AddCors(options =>
+            {
+                var frontEndUrl = Configuration.GetValue<string>("frontEndUrl");
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(frontEndUrl).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
+            services.AddTransient<IRepositorio,RepositorioEnMeMoria>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,6 +63,9 @@ namespace BackEnd
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //configurando cors
+            app.UseCors();
 
             app.UseAuthorization();
 

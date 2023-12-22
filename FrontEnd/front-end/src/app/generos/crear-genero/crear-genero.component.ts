@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { generoCreacionDTO } from '../genero';
+import { GenerosService } from '../generos.service';
 
 @Component({
   selector: 'app-crear-genero',
@@ -11,7 +12,11 @@ import { generoCreacionDTO } from '../genero';
 export class CrearGeneroComponent implements OnInit {
 
   form:FormGroup;
-  constructor(private router:Router ){
+
+  errores:string[]=[];
+  
+
+  constructor(private router:Router , private generosService:GenerosService){
 
   }
 
@@ -22,8 +27,23 @@ export class CrearGeneroComponent implements OnInit {
   guardarCambios(genero:generoCreacionDTO):void{
     //... guardar cambios
     console.log(genero);
-    this.router.navigate(['/generos']);
+    
+    /*
+    this.generosService.crear(genero).subscribe(()=>{
+      this.router.navigate(['/generos']);
+    },error=>console.log(error) );
+    */
+    this.generosService.crear(genero).subscribe({
+      next: (v) => console.log(1,v),
+      error: (e) => console.error(2,e),
+      complete: () => console.info('complete') 
+  })
   }
 
  
 }
+
+
+/*
+
+*/

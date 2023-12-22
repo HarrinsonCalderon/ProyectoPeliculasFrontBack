@@ -40,6 +40,12 @@ import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/for
 import {FormsModule} from '@angular/forms';
 import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
 import { AutocompleteActoresComponent } from './actores/autocomplete-actores/autocomplete-actores.component';
+
+
+/* Para comunicarse con la api, necesito servicios*/
+import {HttpClientModule} from '@angular/common/http';
+import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +73,8 @@ import { AutocompleteActoresComponent } from './actores/autocomplete-actores/aut
     FormularioCinesComponent,
     FormularioPeliculaComponent,
     SelectorMultipleComponent,
-    AutocompleteActoresComponent 
+    AutocompleteActoresComponent,
+    MostrarErroresComponent 
      
   ],
   exports:[
@@ -80,6 +87,7 @@ import { AutocompleteActoresComponent } from './actores/autocomplete-actores/aut
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     MarkdownModule.forRoot()
      
   ],

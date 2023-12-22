@@ -15,7 +15,10 @@ export class FormularioGeneroComponent implements OnInit {
   modelo:generoCreacionDTO
 
   @Output()
-  submit:EventEmitter<generoCreacionDTO>=new EventEmitter<generoCreacionDTO>();
+  OnSubmit:EventEmitter<generoCreacionDTO>=new EventEmitter<generoCreacionDTO>();
+
+  @Input()
+  errores:string[]=[];
 
   constructor(private router:Router,private formBuilder:FormBuilder){
 
@@ -24,6 +27,7 @@ export class FormularioGeneroComponent implements OnInit {
   ngOnInit(){
     this.form=this.formBuilder.group({
       nombre:['',{validators:[Validators.required,Validators.minLength(3)]
+      //nombre:['',{validators:[]
       }]
     })
     //si el modelo es distinto de nulo asigne los datos al formulario
@@ -33,7 +37,7 @@ export class FormularioGeneroComponent implements OnInit {
   }
 
   guardarCambios():void{
-    this.submit.emit(this.form.value);
+    this.OnSubmit.emit(this.form.value);
      
   }
 
