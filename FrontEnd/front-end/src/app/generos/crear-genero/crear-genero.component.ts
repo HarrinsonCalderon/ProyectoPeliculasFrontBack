@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { generoCreacionDTO } from '../genero';
 import { GenerosService } from '../generos.service';
+import { parsearErroresApi } from 'src/app/utilidades/utilidades';
 
 @Component({
   selector: 'app-crear-genero',
@@ -34,8 +35,8 @@ export class CrearGeneroComponent implements OnInit {
     },error=>console.log(error) );
     */
     this.generosService.crear(genero).subscribe({
-      next: (v) => console.log(1,v),
-      error: (e) => console.error(2,e),
+      next: (v) =>{ console.log(1,v);this.router.navigate(['/generos'])},
+      error: (e) =>  this.errores=parsearErroresApi(e),
       complete: () => console.info('complete') 
   })
   }

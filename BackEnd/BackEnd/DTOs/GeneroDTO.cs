@@ -1,0 +1,13 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BackEnd.DTOs
+{
+    public class GeneroDTO
+    {
+        public int Id { get; set; }
+
+       
+
+        public string Nombre { get; set; }
+    }
+}

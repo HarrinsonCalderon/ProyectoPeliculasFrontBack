@@ -25,6 +25,10 @@ import {MatTableModule} from '@angular/material/table'
 
 import {DragDropModule} from '@angular/cdk/drag-drop'
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+
 @NgModule({
   declarations: [],
 
@@ -42,7 +46,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop'
     MatTabsModule,
     MatAutocompleteModule,
     MatTableModule,
-    DragDropModule
+    DragDropModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
     
   ] 
    

@@ -1,15 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackEnd.Entidades
+namespace BackEnd.DTOs
 {
-    public class Genero
+    public class GeneroCreacionDTO
     {
-        public int Id { get; set; }
-
+        
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [StringLength(maximumLength: 10, ErrorMessage = "El campo {0} debe tener 10 maximo de longitud")]
 
         public string Nombre { get; set; }
     }
-
 }

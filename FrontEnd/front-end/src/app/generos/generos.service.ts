@@ -23,4 +23,11 @@ export class GenerosService {
     return this.http.post(this.apiURL,genero)
   }
 
+  public obtenerPorId(id:number):Observable<generoDTO>{
+    return this.http.get<generoDTO>(this.apiURL+'/'+id);
+  }
+  public editar(id:number,genero:generoCreacionDTO){
+    return this.http.put(this.apiURL+'/'+id,genero);
+  }
+
 }

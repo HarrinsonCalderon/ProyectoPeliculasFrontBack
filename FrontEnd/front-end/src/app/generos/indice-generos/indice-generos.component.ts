@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GenerosService } from '../generos.service';
+import { generoDTO } from '../genero';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-indice-generos',
@@ -8,15 +11,27 @@ import { GenerosService } from '../generos.service';
 })
 export class IndiceGenerosComponent implements OnInit{
 
-  constructor(private generosService:GenerosService){
+  //generos:generoDTO[];
+  columnasAMostrar=['id','nombre','acciones']
 
+  generos = new MatTableDataSource<generoDTO>([]);
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
+  constructor(private generosService:GenerosService){
   }
 
   ngOnInit(): void {
      this.generosService.obtenerTodos().subscribe(generos=>{
       console.log(generos);
-
-    
+      //this.generos=generos;
+      this.generos = new MatTableDataSource<generoDTO>(generos);
+      //this.dataSource = new MatTableDataSource<generoDTO>(generos);
      });
+  }
+
+  ngAfterViewInit() {
+    this.generos.paginator = this.paginator;
   }
 }
