@@ -30,4 +30,8 @@ export class GenerosService {
     return this.http.put(this.apiURL+'/'+id,genero);
   }
 
+  public borrar(id:number){
+    return this.http.delete(this.apiURL+'/'+id);
+  }
+
 }

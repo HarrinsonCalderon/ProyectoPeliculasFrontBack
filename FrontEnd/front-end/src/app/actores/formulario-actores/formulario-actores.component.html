@@ -1,4 +1,4 @@
-
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
 
 <form (submit)="onSubmit()" [formGroup]="form">
 
@@ -15,9 +15,9 @@
         <mat-error>El campo nombre es requerido</mat-error>
     </mat-form-field>
 
-    <app-input-img [urlImagenActual]="modelo?.foto" (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
+    <app-input-img  [urlImagenActual]="modelo?.foto" (archivoSeleccionado)="archivoSeleccionado($event)"></app-input-img>
 
-    <app-input-markdown (changeMarkdown)="cambioMarkdown($event)"></app-input-markdown>
+    <app-input-markdown   (changeMarkdown)="cambioMarkdown($event)"></app-input-markdown>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">

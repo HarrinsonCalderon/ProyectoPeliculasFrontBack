@@ -46,6 +46,9 @@ import { AutocompleteActoresComponent } from './actores/autocomplete-actores/aut
 import {HttpClientModule} from '@angular/common/http';
 import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component'
 
+/**Para las alertas */
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +91,8 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    SweetAlert2Module.forRoot()
      
   ],
   providers: [],

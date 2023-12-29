@@ -23,7 +23,11 @@ export class IndiceGenerosComponent implements OnInit{
   }
 
   ngOnInit(): void {
-     this.generosService.obtenerTodos().subscribe(generos=>{
+    this.cargarGeneros();
+  }
+
+  cargarGeneros(){
+    this.generosService.obtenerTodos().subscribe(generos=>{
       console.log(generos);
       //this.generos=generos;
       this.generos = new MatTableDataSource<generoDTO>(generos);
@@ -33,5 +37,13 @@ export class IndiceGenerosComponent implements OnInit{
 
   ngAfterViewInit() {
     this.generos.paginator = this.paginator;
+  }
+
+  borrar(id:number){
+    this.generosService.borrar(id).subscribe({ 
+      next: (v) =>{ this.cargarGeneros();
+      } 
+    
+    });
   }
 }

@@ -1,4 +1,5 @@
 using BackEnd.Entidades.Repositorios;
+using BackEnd.Utilidades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,10 @@ namespace BackEnd
         {
             //para mapear las entidades a DTOs
             services.AddAutoMapper(typeof(Startup));
+
+            //para el cargue de archivos local
+            services.AddTransient<IAlmacenadorArchivos,AlmacenadorArchivosLocal>();
+            services.AddHttpContextAccessor();
 
             //db tablas
             services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
@@ -64,6 +69,9 @@ namespace BackEnd
             }
 
             app.UseHttpsRedirection();
+
+            //para almacenar archivos localmente
+            app.UseStaticFiles();
 
             app.UseRouting();
 

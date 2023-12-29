@@ -26,3 +26,6 @@ export function parsearErroresApi(response:any):string[]{
   }
   return resultado;
 }
+
+
+ 
