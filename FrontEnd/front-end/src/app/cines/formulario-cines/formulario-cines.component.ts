@@ -22,6 +22,8 @@ constructor(private formBuilder:FormBuilder){
 }
 
 ngOnInit(): void {
+
+  console.log(this.modelo,'Formulario')
   this.form=this.formBuilder.group(
     {
       nombre:['',Validators.required]
@@ -29,7 +31,13 @@ ngOnInit(): void {
   )
 
     if(this.modelo!==undefined){
-      this.form.patchValue(this.modelo);
+      //this.form.patchValue(this.modelo);
+      let aux={
+        nombre:this.modelo.nombre
+      }
+      console.log('1',this.modelo.nombre,'2',aux);
+      this.form.patchValue(aux);
+
     }
 
 }

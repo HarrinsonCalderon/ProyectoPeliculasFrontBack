@@ -16,23 +16,12 @@ OnSubmit:EventEmitter<PeliculaCreacionDTO>=new EventEmitter<PeliculaCreacionDTO>
 modelo:PeliculaCreacionDTO
 form:FormGroup
 
-generosNoSeleccionados:MultipleSelectorModel[]=[
-  {llave:1,valor:'Drama'},
-  {llave:2,valor:'Accion'},
-  {llave:3,valor:'Comedia'}
-]
+@Input()
+generosNoSeleccionados:MultipleSelectorModel[]; 
 generosSeleccionados:MultipleSelectorModel[]=[];
-
-cinesNoSeleccionados : MultipleSelectorModel[]=
-[ 
-  {llave:1,valor:'Sambil'},
-  {llave:2,valor:'Agora'},
-  {llave:3,valor:'Acropolis'}
-]
-cinesSeleccionados : MultipleSelectorModel[]=
-[ 
- 
-]
+@Input()
+cinesNoSeleccionados : MultipleSelectorModel[]; 
+cinesSeleccionados : MultipleSelectorModel[]=[];
 
 constructor(private formBuilder:FormBuilder){
 
@@ -58,8 +47,8 @@ ngOnInit(): void {
 
 guardarCambios(){
 
-  console.log(this.generosSeleccionados);
-  console.log(this.generosNoSeleccionados);
+  //console.log(this.generosSeleccionados);
+  //console.log(this.generosNoSeleccionados);
   const generosId=this.generosSeleccionados.map(val=>val.llave);
   this.form.get('generosId').setValue(generosId);
 

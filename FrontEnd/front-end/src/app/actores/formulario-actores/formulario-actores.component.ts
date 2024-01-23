@@ -27,7 +27,7 @@ export class FormularioActoresComponent implements OnInit{
 }
 
 ngOnInit(): void {
-  console.log('aa',this.modelo)
+  
   this.form=this.formBuilder.group(
     {
       nombre:['',{validators:[Validators.required]}],

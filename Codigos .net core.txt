@@ -1,0 +1,5 @@
+Para crear una nueva migracion
+Add-Migration Cines
+
+para actualizar la bd luego de hacer la migracion
+Update-Database
