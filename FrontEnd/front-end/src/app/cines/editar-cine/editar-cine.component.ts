@@ -31,9 +31,10 @@ export class EditarCineComponent implements OnInit {
       next: (v) =>{ 
         //this.modelo.id=v.id; 
       //this.modelo.nombre=v.nombre;
-      this.modelo = {id: v.id, nombre:v.nombre};
-        console.log(this.modelo.nombre)  
-        this.aux=v.nombre;
+      //this.modelo = {id: v.id, nombre:v.nombre};
+      this.aux=v;
+         console.log(v,'algo')  
+        
       },
       error: (e) =>{ console.info('error',e);
         
@@ -42,16 +43,12 @@ export class EditarCineComponent implements OnInit {
     });
     //this.mostrarDatos();
     console.log(this.aux);
-     
-    this.modelo={id:1,nombre:this.aux};
+    this.modelo  ={id:1,nombre:'Felipe'};
+    
   }
 
 
-
-  mostrarDatos( ){
-    this.modelo={id:1,nombre:'dato quemado'};
-  }
-
+ 
 
 
   guardarCambios(cine:cineCreacionDTO){

@@ -48,6 +48,7 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
 
 /**Para las alertas */
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     FormularioPeliculaComponent,
     SelectorMultipleComponent,
     AutocompleteActoresComponent,
-    MostrarErroresComponent 
+    MostrarErroresComponent,
+    AutorizadoComponent 
      
   ],
   exports:[

@@ -27,7 +27,7 @@ ngOnInit(): void {
 
 cargarGeneros(){
   this.cinesService.obtenerTodos().subscribe(generos=>{
-    console.log(generos);
+    //console.log(generos);
     //this.generos=generos;
     this.cines = new MatTableDataSource<cineDTO>(generos);
     //this.dataSource = new MatTableDataSource<generoDTO>(generos);
