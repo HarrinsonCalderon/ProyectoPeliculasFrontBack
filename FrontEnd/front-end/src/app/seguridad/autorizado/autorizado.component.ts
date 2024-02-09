@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SeguridadService } from '../seguridad.service';
 
 @Component({
@@ -7,12 +7,21 @@ import { SeguridadService } from '../seguridad.service';
   styleUrls: ['./autorizado.component.css']
 })
 export class AutorizadoComponent implements OnInit {
-  constructor(private SeguridadService:SeguridadService) { }
+  constructor(private seguridadService:SeguridadService) { }
+
+  @Input()
+  rol:string;
   ngOnInit(): void {
-    
+   
   }
 
+
   estaAutorizado():boolean{
-    return this.SeguridadService.estaLogueado();
+    if(this.rol){
+      return this.seguridadService.obtenerRol()===this.rol;
+    }else{
+      return this.seguridadService.estaLogueado();
+    }   
+    
   }
 }

@@ -3,6 +3,8 @@ using BackEnd.DTOs;
 using BackEnd.Entidades;
 using BackEnd.Migrations;
 using BackEnd.Utilidades;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -26,8 +28,12 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> Post([FromForm] ActorCreacionDTO actorCreacionDTO) {
             var actor = mapper.Map<Actor>(actorCreacionDTO);
+
+
+
 
             if (actorCreacionDTO.Foto!=null) {
                actor.Foto= await almacenadorArchivos.GuardarArchivo(contenedor,actorCreacionDTO.Foto);

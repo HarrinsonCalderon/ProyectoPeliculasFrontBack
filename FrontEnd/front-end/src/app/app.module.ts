@@ -49,6 +49,10 @@ import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-er
 /**Para las alertas */
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component';
+import { SeguridadLoginComponent } from './seguridad-login/seguridad-login.component';
+import { LoginComponent } from './seguridad/login/login.component';
+import { RegistroComponent } from './seguridad/registro/registro.component';
+import { AutenticacionComponent } from './seguridad/formulario/autenticacion/autenticacion.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +83,11 @@ import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component
     SelectorMultipleComponent,
     AutocompleteActoresComponent,
     MostrarErroresComponent,
-    AutorizadoComponent 
+    AutorizadoComponent,
+    SeguridadLoginComponent,
+    LoginComponent,
+    RegistroComponent,
+    AutenticacionComponent 
      
   ],
   exports:[

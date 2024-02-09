@@ -2,10 +2,15 @@
 using BackEnd.DTOs;
 using BackEnd.Entidades;
 using BackEnd.Utilidades;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BackEnd.Controllers
@@ -17,15 +22,24 @@ namespace BackEnd.Controllers
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public CinesController(ApplicationDbContext context, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos) {
+        public CinesController(ApplicationDbContext context, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos,UserManager<IdentityUser> userManager) {
             this.context = context;
             this.mapper = mapper;
             this.almacenadorArchivos = almacenadorArchivos;
+            this.userManager = userManager;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CineCreacionDTO cineCreacionDTO) { 
+        [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)] //solo usuario autenticados pueden acceder aqui
+        public async Task<ActionResult> Post([FromBody] CineCreacionDTO cineCreacionDTO) {
+
+            //usando el token, puedo usar el email de la persona para validar cosas
+            
+            var email = HttpContext.User.Claims.FirstOrDefault(x=>x.Type=="email").Value;
+            var usuario=await userManager.FindByEmailAsync(email);
+
             var cine=mapper.Map<Cine>(cineCreacionDTO);
             context.Add(cine);
             await context.SaveChangesAsync();

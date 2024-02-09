@@ -1,10 +1,11 @@
 ﻿using BackEnd.Entidades;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
 namespace BackEnd
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext//  DbContext
     {
         public ApplicationDbContext(DbContextOptions options):base(options)
         {

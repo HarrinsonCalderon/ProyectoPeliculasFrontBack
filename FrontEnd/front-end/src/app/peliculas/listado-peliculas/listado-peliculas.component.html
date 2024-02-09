@@ -15,12 +15,27 @@
         <p>
           <a>{{it.titulo}}</a>
         </p>
-        <div>
-          <a mat-flat-button color="primary">
-              Editar
-          </a>
-          <button mat-flat-button color="warn" type="button"> Borrar</button>
-        </div>
+
+
+        <app-autorizado [rol]="'admin'">
+          <ng-container autorizado>
+              <!--estas autenticado-->
+
+              <div>
+                <a mat-flat-button color="primary">
+                    Editar
+                </a>
+                <button mat-flat-button color="warn" type="button"> Borrar</button>
+              </div>
+
+          </ng-container>
+          <ng-container noAutorizado>
+              no estas autenticado
+          </ng-container>
+      </app-autorizado>
+
+
+      
 
       </div>
 
